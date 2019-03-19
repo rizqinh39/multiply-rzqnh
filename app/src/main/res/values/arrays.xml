@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="home_menu_title">
+        <item>Summary</item>
+        <item>Multiply</item>
+        <item>Prime Number</item>
+        <item>Fibonacci</item>
+    </string-array>
+
+    <string-array name="home_menu_icon">
+        <item>@drawable/ic_plus</item>
+        <item>@drawable/ic_multiply</item>
+        <item>@drawable/ic_plus</item>
+        <item>@drawable/ic_fibo</item>
+    </string-array>
+
+</resources>
