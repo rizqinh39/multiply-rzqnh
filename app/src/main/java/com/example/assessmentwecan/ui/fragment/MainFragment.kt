@@ -6,19 +6,21 @@ import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.assessmentwecan.R
+import com.example.assessmentwecan.helper.CommonUtil
 import com.example.assessmentwecan.helper.MenuModel
 import com.example.assessmentwecan.helper.listener.RecyclerOnClickListener
 import com.example.assessmentwecan.ui.adapter.HomeMenuAdapter
 import com.example.assessmentwecan.ui.interactor.HomePresenterImpl
 import com.example.assessmentwecan.ui.presenter.HomePresenter
 import com.example.assessmentwecan.ui.view.HomeView
+import com.example.assessmentwecan.ui.widgets.GridSpacingItemDecorationkt
 import kotlinx.android.synthetic.main.fragment_home.*
 
 class MainFragment: BaseFragment(), HomeView, RecyclerOnClickListener {
 
 
     private var mPresenter: HomePresenter? = null
-    private var mMenuHome: ArrayList<MenuModel>? = ArrayList()
+    private var mMenuHome: ArrayList<MenuModel>? = null
     private var mAdapter: HomeMenuAdapter?= null
 
     companion object {
@@ -42,12 +44,27 @@ class MainFragment: BaseFragment(), HomeView, RecyclerOnClickListener {
     }
 
     private fun initInstance() {
+        mMenuHome = ArrayList()
         mPresenter = HomePresenterImpl(context!!, this)
         mAdapter = HomeMenuAdapter(context!!, mMenuHome!!)
         mAdapter?.setOnClickListener(this)
     }
 
     override fun onClick(view: View, position: Int) {
+        when (position) {
+            0 -> {
+
+            }
+            1 -> {
+
+            }
+            2 -> {
+
+            }
+            3 -> {
+
+            }
+        }
 
     }
 
@@ -59,6 +76,7 @@ class MainFragment: BaseFragment(), HomeView, RecyclerOnClickListener {
 
     private fun initMenu() {
         mPresenter?.getMenuData()
+
     }
 
     private fun initView() {
@@ -67,23 +85,23 @@ class MainFragment: BaseFragment(), HomeView, RecyclerOnClickListener {
     }
 
     private fun setRecycleView() {
-        // spaceDecorator = GridSpacingItemDecorationkt(3, ConvertUtil.dpToPx(context, 8), true, 0)
-        // recyclerView!!.removeItemDecoration(spaceDecorator!!)
+         val spaceDecorator = GridSpacingItemDecorationkt(2, CommonUtil.dpToPx(context!!, 8), true, 2)
+        rv_home!!.removeItemDecoration(spaceDecorator)
         rv_home!!.setHasFixedSize(true)
-        rv_home.layoutManager = GridLayoutManager(context, 3)
+        rv_home.layoutManager = GridLayoutManager(context, 2)
         // recyclerView.addItemDecoration(spaceDecorator!!)
         rv_home.itemAnimator = DefaultItemAnimator()
         rv_home.isNestedScrollingEnabled = false
         rv_home.isFocusable = false
         rv_home.adapter = mAdapter
-        /*recyclerView.removeItemDecoration(spaceDecorator!!)
-        if (recyclerView.itemDecorationCount == 0) {
-            recyclerView.addItemDecoration(spaceDecorator!!)
-        }*/
+        rv_home.removeItemDecoration(spaceDecorator)
+        if (rv_home.itemDecorationCount == 0) {
+            rv_home.addItemDecoration(spaceDecorator)
+        }
     }
 
     override fun addMenuHome(menuHome: ArrayList<MenuModel>?) {
-        mMenuHome = menuHome
+        mMenuHome?.addAll(menuHome!!)
         mAdapter?.notifyDataSetChanged()
 
     }
