@@ -21,6 +21,9 @@ class HomePresenterImpl(context: Context, view: HomeView): HomePresenter {
     override fun getMenuData() {
         val getImage = mContext.resources.obtainTypedArray(R.array.home_menu_icon)
         val getTitle = mContext.resources.obtainTypedArray(R.array.home_menu_title)
+        if (menuHome!!.isNotEmpty()){
+            menuHome!!.clear()
+        }
          for (i in 0 until getImage.length()) {
              val model = MenuModel()
              model.imageItem = getImage.getDrawable(i)

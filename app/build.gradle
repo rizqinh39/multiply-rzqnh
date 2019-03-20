@@ -22,6 +22,10 @@ android {
     }
 }
 
+ext {
+    ANKO_VERSION = '0.10.8'
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -38,4 +42,11 @@ dependencies {
     implementation "androidx.cardview:cardview:1.0.0"
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
     implementation 'androidx.multidex:multidex:2.0.1'
+
+    // Anko
+    implementation "org.jetbrains.anko:anko:$ANKO_VERSION"
+
+    // Anko Commons
+    implementation "org.jetbrains.anko:anko-commons:$ANKO_VERSION"
+    implementation "org.jetbrains.anko:anko-design:$ANKO_VERSION"
 }

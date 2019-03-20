@@ -16,12 +16,12 @@ import com.example.assessmentwecan.ui.view.HomeView
 import com.example.assessmentwecan.ui.widgets.GridSpacingItemDecorationkt
 import kotlinx.android.synthetic.main.fragment_home.*
 
-class MainFragment: BaseFragment(), HomeView, RecyclerOnClickListener {
+class MainFragment : BaseFragment(), HomeView, RecyclerOnClickListener {
 
 
     private var mPresenter: HomePresenter? = null
     private var mMenuHome: ArrayList<MenuModel>? = null
-    private var mAdapter: HomeMenuAdapter?= null
+    private var mAdapter: HomeMenuAdapter? = null
 
     companion object {
         @JvmStatic
@@ -53,16 +53,16 @@ class MainFragment: BaseFragment(), HomeView, RecyclerOnClickListener {
     override fun onClick(view: View, position: Int) {
         when (position) {
             0 -> {
-
+                replaceFragment(false, R.id.container_home, SummaryFragment.newInstance(), SummaryFragment.TAG)
             }
             1 -> {
-
+                replaceFragment(false, R.id.container_home, MultiplyFragment.newInstance(), MultiplyFragment.TAG)
             }
             2 -> {
-
+                replaceFragment(false, R.id.container_home, PrimaryFragment.newInstance(), PrimaryFragment.TAG)
             }
             3 -> {
-
+                replaceFragment(false, R.id.container_home, FibonacciFragment.newInstance(), FibonacciFragment.TAG)
             }
         }
 
@@ -70,11 +70,14 @@ class MainFragment: BaseFragment(), HomeView, RecyclerOnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initMenu()
         initView()
+        initMenu()
     }
 
     private fun initMenu() {
+        if (mMenuHome!!.isNotEmpty()) {
+            mMenuHome!!.clear()
+        }
         mPresenter?.getMenuData()
 
     }
@@ -85,7 +88,7 @@ class MainFragment: BaseFragment(), HomeView, RecyclerOnClickListener {
     }
 
     private fun setRecycleView() {
-         val spaceDecorator = GridSpacingItemDecorationkt(2, CommonUtil.dpToPx(context!!, 8), true, 2)
+        val spaceDecorator = GridSpacingItemDecorationkt(2, CommonUtil.dpToPx(context!!, 8), true, 2)
         rv_home!!.removeItemDecoration(spaceDecorator)
         rv_home!!.setHasFixedSize(true)
         rv_home.layoutManager = GridLayoutManager(context, 2)

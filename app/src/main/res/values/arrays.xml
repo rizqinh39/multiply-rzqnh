@@ -11,8 +11,8 @@
     <string-array name="home_menu_icon">
         <item>@drawable/ic_plus</item>
         <item>@drawable/ic_multiply</item>
-        <item>@drawable/ic_plus</item>
         <item>@drawable/ic_fibo</item>
+        <item>@drawable/ic_f_ibo</item>
     </string-array>
 
 </resources>
